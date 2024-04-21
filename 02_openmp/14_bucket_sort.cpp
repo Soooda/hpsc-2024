@@ -6,6 +6,7 @@ int main() {
   int n = 50;
   int range = 5;
   std::vector<int> key(n);
+#pragma omp parallel for
   for (int i=0; i<n; i++) {
     key[i] = rand() % range;
     printf("%d ",key[i]);
