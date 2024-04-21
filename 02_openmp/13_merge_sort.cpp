@@ -23,15 +23,18 @@ void merge(std::vector<int>& vec, int begin, int mid, int end) {
 void merge_sort(std::vector<int>& vec, int begin, int end) {
   if(begin < end) {
     int mid = (begin + end) / 2;
+#pragma omp task shared(vec)
     merge_sort(vec, begin, mid);
+#pragma omp task shared(vec)
     merge_sort(vec, mid+1, end);
+#pragma omp taskwait
     merge(vec, begin, mid, end);
   }
 }
 
 int main() {
   // Comment out printf() to remove stdout buffer overhead
-  int n = 10000000;
+  int n = 1000000;
   // int n = 50;
   std::vector<int> vec(n);
   for (int i=0; i<n; i++) {
