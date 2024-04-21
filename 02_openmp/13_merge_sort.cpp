@@ -30,16 +30,18 @@ void merge_sort(std::vector<int>& vec, int begin, int end) {
 }
 
 int main() {
-  int n = 20;
+  // Comment out printf() to remove stdout buffer overhead
+  int n = 10000000;
+  // int n = 50;
   std::vector<int> vec(n);
   for (int i=0; i<n; i++) {
     vec[i] = rand() % (10 * n);
-    printf("%d ",vec[i]);
+    // printf("%d ",vec[i]);
   }
-  printf("\n");
+  // printf("\n");
   merge_sort(vec, 0, n-1);
-  for (int i=0; i<n; i++) {
-    printf("%d ",vec[i]);
-  }
-  printf("\n");
+  // for (int i=0; i<n; i++) {
+  //   printf("%d ",vec[i]);
+  // }
+  // printf("\n");
 }
