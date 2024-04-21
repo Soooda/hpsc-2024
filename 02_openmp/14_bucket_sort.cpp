@@ -31,6 +31,7 @@ int main() {
   for (int i=0; i<range; i++) 
     offset[i] = tmp[i];
 
+#pragma omp parallel for shared(key)
   for (int i=0; i<range; i++) {
     int j = offset[i];
     for (; bucket[i]>0; bucket[i]--) {
