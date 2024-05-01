@@ -35,7 +35,8 @@ int main(int argc, char** argv) {
         fy[i] -= ry * m[j] / (r * r * r);
       }
     }
-    if(rank==0) printf("%d %g %g\n",i,fx[i],fy[i]);
+    // if(rank==0) printf("%d %g %g\n",i,fx[i],fy[i]);
+    printf("%d %g %g\n",i,fx[i],fy[i]);
   }
   MPI_Finalize();
 }
