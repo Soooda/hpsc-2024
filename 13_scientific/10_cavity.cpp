@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 typedef vector<vector<float>> matrix;
@@ -39,14 +40,15 @@ int main() {
     for (int j=1; j<ny-1; j++) {
       for (int i=1; i<nx-1; i++) {
         // Compute b[j][i]
+        b[j][i] = rho * (1 / dt * ((u[j][i+1] - u[j][i-1]) / (2 * dx) + (v[j+1][i] - v[j-1][i]) / (2 * dy)) - pow((u[j][i+1] - u[j, i-1]) / (2 * dx), 2) - 2 * ((u[j+1][i] - u[j-1][i]) / (2 * dy) * (v[j][i+1] - v[j][i-1]) / (2 * dx)) - pow((v[j+1][i] - v[j-1][i]) / (2 * dy), 2);
       }
     }
     for (int it=0; it<nit; it++) {
       for (int j=0; j<ny; j++)
         for (int i=0; i<nx; i++)
-	  pn[j][i] = p[j][i];
-      for (int j=1; j<ny-1; j++) {
-        for (int i=1; i<nx-1; i++) {
+          pn[j][i] = p[j][i];
+          for (int j=1; j<ny-1; j++) {
+          for (int i=1; i<nx-1; i++) {
 	  // Compute p[j][i]
 	}
       }
@@ -60,7 +62,7 @@ int main() {
     for (int j=0; j<ny; j++) {
       for (int i=0; i<nx; i++) {
         un[j][i] = u[j][i];
-	vn[j][i] = v[j][i];
+	    vn[j][i] = v[j][i];
       }
     }
     for (int j=1; j<ny-1; j++) {
@@ -78,11 +80,11 @@ int main() {
       for (int j=0; j<ny; j++)
         for (int i=0; i<nx; i++)
           ufile << u[j][i] << " ";
-      ufile << "\n";
+          ufile << "\n";
       for (int j=0; j<ny; j++)
         for (int i=0; i<nx; i++)
           vfile << v[j][i] << " ";
-      vfile << "\n";
+          vfile << "\n";
       for (int j=0; j<ny; j++)
         for (int i=0; i<nx; i++)
           pfile << p[j][i] << " ";
